@@ -1,0 +1,22 @@
+apiVersion: "spec.keptn.sh/0.2.0"
+kind: "Shipyard"
+metadata:
+  name: "shipyard-foobar"
+spec:
+  stages:
+    - name: "dev"
+      sequences:
+      - name: "delivery"
+        tasks:
+        - name: "deployment"
+        - name: "release"
+
+    - name: "hardening"
+      sequences:
+      - name: "delivery"
+        triggeredOn:
+          - event: "dev.delivery.finished"
+        tasks:
+        - name: "deployment"
+        - name: "release"
+
